@@ -150,7 +150,7 @@ Module.register("MMM-DateCounter", {
 	buildCountdownDisplay(units) {
 		var displayText = "";
 		for (const [key, value] of units.entries()) {
-			if (value !== 0) {
+			if (key === "second" || value !== 0 ) {
 				displayText = displayText.concat(displayText.length === 0 ? "" : ", ", value, " ", key, value > 1 ? "s" : "");
 			}
 		}
