@@ -1,7 +1,8 @@
 #DATE_COUNTER {
   width: fit-content;
   height: fit-content;
-  margin: auto;
+  margin-left: 0px;
+  padding-right: 10px;
   /* display: grid; */
   grid-template-columns: 75% 20%
 }
@@ -9,7 +10,10 @@
 #DATE_COUNTER_TEXT_GROUP {
   width : fit-content;
   height : fit-content;
-  white-space: pre
+  padding-left: 0px;
+  margin-left: 0px;
+  white-space: pre;
+  text-align: left;
 }
 
 #DATE_COUNTER_TITLE {
