@@ -124,21 +124,31 @@ Module.register("MMM-DateCounter", {
 
 	getDuration: function (time) {
 		var units = new Map();
+		var isFutureDate = (moment().diff(time) < 0);
 
-		this.updateMapAndRemoveUnit(units, "year", "years", time);
-		this.updateMapAndRemoveUnit(units, "month", "months", time);
-		this.updateMapAndRemoveUnit(units, "week", "weeks", time);
-		this.updateMapAndRemoveUnit(units, "day", "days", time);
-		this.updateMapAndRemoveUnit(units, "hour", "hours", time);
-		this.updateMapAndRemoveUnit(units, "minute", "minutes", time);
-		this.updateMapAndRemoveUnit(units, "second", "seconds", time);
-
+		if (isFutureDate) {
+			this.updateMapAndRemoveUnitFuture(units, "year", "years", time);
+			this.updateMapAndRemoveUnitFuture(units, "month", "months", time);
+			this.updateMapAndRemoveUnitFuture(units, "week", "weeks", time);
+			this.updateMapAndRemoveUnitFuture(units, "day", "days", time);
+			this.updateMapAndRemoveUnitFuture(units, "hour", "hours", time);
+			this.updateMapAndRemoveUnitFuture(units, "minute", "minutes", time);
+			this.updateMapAndRemoveUnitFuture(units, "second", "seconds", time);
+		} else {
+			this.updateMapAndRemoveUnitPast(units, "year", "years", time);
+			this.updateMapAndRemoveUnitPast(units, "month", "months", time);
+			this.updateMapAndRemoveUnitPast(units, "week", "weeks", time);
+			this.updateMapAndRemoveUnitPast(units, "day", "days", time);
+			this.updateMapAndRemoveUnitPast(units, "hour", "hours", time);
+			this.updateMapAndRemoveUnitPast(units, "minute", "minutes", time);
+			this.updateMapAndRemoveUnitPast(units, "second", "seconds", time);
+		}
 		units.forEach(this.buildDurationString);
 
 		return this.buildCountdownDisplay(units);
 	},
 
-	updateMapAndRemoveUnit: function (map, key, unit, time) {
+	updateMapAndRemoveUnitFuture: function (map, key, unit, time) {
 		if (this.config.longCountdownFormat.toLowerCase().indexOf(key) === -1) {
 			console.log(key + " was not setup in the config");
 			return;
@@ -147,10 +157,19 @@ Module.register("MMM-DateCounter", {
 		time = time.subtract(map.get(key), unit);
 	},
 
+	updateMapAndRemoveUnitPast: function (map, key, unit, time) {
+		if (this.config.longCountdownFormat.toLowerCase().indexOf(key) === -1) {
+			console.log(key + " was not setup in the config");
+			return;
+		}
+		map.set(key, moment().diff(time, unit, false));
+		time = time.add(map.get(key), unit);
+	},
+
 	buildCountdownDisplay(units) {
 		var displayText = "";
 		for (const [key, value] of units.entries()) {
-			if (key === "second" || value !== 0 ) {
+			if (key === "second" || value !== 0) {
 				displayText = displayText.concat(displayText.length === 0 ? "" : ", ", value, " ", key, value > 1 ? "s" : "");
 			}
 		}
