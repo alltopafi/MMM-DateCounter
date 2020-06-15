@@ -4,7 +4,17 @@ Display a countdown or count up to a specfic date.
 
 ## Screenshots
 
-//TODO screenshot (countdown with image long format, countdown without image short format,countup)
+### Long format with icon
+![Long format with icon](https://github.com/alltopafi/MMM-DateCounter/blob/master/screenshots/long-format-with-icon.png)
+
+### Long format without hours, minutes, or seconds
+![Long format without hours, minutes, or seconds](https://github.com/alltopafi/MMM-DateCounter/blob/master/screenshots/long-format-without-hours-min-sec.png)
+
+### Default moment fromNow no icon
+![Default moment fromNow no icon](https://github.com/alltopafi/MMM-DateCounter/blob/master/screenshots/default-moment-fromNow-no-icon.png)
+
+### Default momenent fromNow with icon
+![Default momenent fromNow with icon](https://github.com/alltopafi/MMM-DateCounter/blob/master/screenshots/default-moment-fromNow-with-icon.png)
 
 ## Regular installation
 
