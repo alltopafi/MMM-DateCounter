@@ -20,9 +20,9 @@ Display a countdown or count up to a specfic date.
 
 
 ```
-git clone https://github.com/alltopafi/MMM-DateCounter.git
-cd MMM-DateCounter
-npm install
+Open a terminal session, navigate to your MagicMirror's modules folder and execute git clone https://github.com/alltopafi/MMM-DateCounter.git, a new folder called MMM-DateCounter will be created.
+
+Activate the module by adding it to the config.js file as shown below.
 ```
 
 ## Configuration
