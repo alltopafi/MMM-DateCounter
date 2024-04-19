@@ -18,7 +18,8 @@ Module.register("MMM-DateCounter", {
 		longCountdownAutoSize: true,
 		// icon: "/modules/MMM-DateCounter/Flat_tick_icon.svg"
 		// icon: "https://upload.wikimedia.org/wikipedia/commons/7/73/Flat_tick_icon.svg"
-		icon: null
+		icon: null,
+		hideOnExpiration: false
 	},
 
 	// Define required scripts.
@@ -64,7 +65,6 @@ Module.register("MMM-DateCounter", {
 
 	// Override dom generator.
 	getDom: function () {
-
 		var wrapper = document.createElement("div");
 		wrapper.id = this.config.classes ? this.config.classes : "DATE_COUNTER";
 		// get the eventTitle text
@@ -119,14 +119,20 @@ Module.register("MMM-DateCounter", {
 			wrapper.style.display = "grid";
 		}
 
+		if(this.config.hideOnExpiration && !this.isFutureDate(moment(this.config.eventDate + "T" + this.config.eventStartTime, "YYYY-MM-DDThh:mm"))) {
+			wrapper.hidden = true;
+		}
 		return wrapper;
+	},
+
+	isFutureDate: function(time) {
+		return (moment().diff(time) < 0);
 	},
 
 	getDuration: function (time) {
 		var units = new Map();
-		var isFutureDate = (moment().diff(time) < 0);
 
-		if (isFutureDate) {
+		if (this.isFutureDate(time)) {
 			this.updateMapAndRemoveUnitFuture(units, "year", "years", time);
 			this.updateMapAndRemoveUnitFuture(units, "month", "months", time);
 			this.updateMapAndRemoveUnitFuture(units, "week", "weeks", time);
