@@ -115,6 +115,6 @@ You may include an image to show next to the countdown, this can be a local imag
 #### **`hideOnExpiration`**
 
 If you would like the module to be hidden after the date has passed set to true.
-
+**Note:** If the module is hidden it should not be doing any processing.
 ##### Deffault:
 ```hideOnExpiration: false.```
