@@ -67,6 +67,10 @@ Module.register("MMM-DateCounter", {
 	getDom: function () {
 		var wrapper = document.createElement("div");
 		wrapper.id = this.config.classes ? this.config.classes : "DATE_COUNTER";
+		if(this.config.hideOnExpiration && !this.isFutureDate(moment(this.config.eventDate + "T" + this.config.eventStartTime, "YYYY-MM-DDThh:mm"))) {
+			wrapper.hidden = true;
+			return wrapper;
+		}
 		// get the eventTitle text
 
 		var titleDiv = document.createElement("div");
@@ -119,9 +123,6 @@ Module.register("MMM-DateCounter", {
 			wrapper.style.display = "grid";
 		}
 
-		if(this.config.hideOnExpiration && !this.isFutureDate(moment(this.config.eventDate + "T" + this.config.eventStartTime, "YYYY-MM-DDThh:mm"))) {
-			wrapper.hidden = true;
-		}
 		return wrapper;
 	},
 
