@@ -104,7 +104,9 @@ Module.register("MMM-DateCounter", {
 
 		event.appendChild(titleDiv);
 		//add line
-		event.appendChild(document.createElement("hr"));
+		var hr = document.createElement("hr");
+		hr.classList.add("date_counter_hr")
+		event.appendChild(hr);
 		//add differnece between current time and event date/time
 		event.appendChild(countdownTextDiv);
 
