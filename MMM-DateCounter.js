@@ -19,7 +19,8 @@ Module.register("MMM-DateCounter", {
 		// icon: "/modules/MMM-DateCounter/Flat_tick_icon.svg"
 		// icon: "https://upload.wikimedia.org/wikipedia/commons/7/73/Flat_tick_icon.svg"
 		icon: null,
-		hideOnExpiration: false
+		hideOnExpiration: false, 
+		showOnOneLine: false
 	},
 
 	// Define required scripts.
@@ -182,8 +183,11 @@ Module.register("MMM-DateCounter", {
 				displayText = displayText.concat(displayText.length === 0 ? "" : ", ", value, " ", key, value > 1 ? "s" : "");
 			}
 		}
-
-		displayText = displayText.split(/,/).reduce((a, b, i) => i % 2 == 0 ? a + ",\n" + b : a + "," + b);
+		if(this.config.showOnOneLine) {
+			displayText = displayText.split(/,/).reduce((a, b, i) => i % 2 == 0 ? a + ", " + b : a + "," + b);
+		} else {
+			displayText = displayText.split(/,/).reduce((a, b, i) => i % 2 == 0 ? a + ",\n" + b : a + "," + b);
+		}
 
 		return displayText;
 	},
