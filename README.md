@@ -41,7 +41,8 @@ Activate the module by adding it to the config.js file as shown below.
         longCountdownFormat: "year,month,week,day,hour,minute,second",
         longCountdownAutoSize: true,
         icon: "/modules/MMM-DateCounter/birthday_cake.svg",
-        hideOnExpiration: false
+        hideOnExpiration: false,
+        showOnOneLine, false
     }
 }
 
@@ -117,4 +118,9 @@ You may include an image to show next to the countdown, this can be a local imag
 If you would like the module to be hidden after the date has passed set to true.
 **Note:** If the module is hidden it should not be doing any processing.
 ##### Deffault:
-```hideOnExpiration: false.```
+```hideOnExpiration: false```
+
+#### **'showOnOneLine'**
+If you would like the formatted text to be displayed on a single line set to true. 
+#### Default: 
+```showOnOneLine: false```
